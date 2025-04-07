@@ -1,5 +1,5 @@
 """
-    Sliding window with fixed side is useful when you need to perform operations 
+    Sliding window with fixed size is useful when you need to perform operations 
     on k contiguous elements in a structure (such as an array, string, etc.).
     An advantage of this algorithm is that it allows you to traverse the structure
     only once while maintaining a fixed window size.
@@ -7,7 +7,14 @@
     effective for large dataset.
     
     Some of the most popular problems that can be solved with `Fixed size sliding window`
-    include finding maximum (sum, xor, etc.) on k contiguous elements in an array. 
+    include finding maximum (sum, xor, etc.) on k contiguous elements in an array.
+
+    In a fixed window problem, we have a predefined window size that remains constant
+    throughout the problem-solving process.
+    The template for solving a fixed window problem involves maintaining two pointers,
+    low and high, that represent the indices of the current window.
+    The process involves iterating over the array or sequence, adjusting the window as
+    necessary, and performing computations or operations on the elements within the window.
 """
 
 from typing import List
