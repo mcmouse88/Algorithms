@@ -20,8 +20,9 @@
     the window by moving the start pointer. Iterate or loop until the window size matches
     the desired criteria, and update the window accordingly.
 """
-
+from collections import defaultdict
 from typing import List
+
 
 def length_of_longest_substring(s: str) -> int:
     """
@@ -43,6 +44,7 @@ def length_of_longest_substring(s: str) -> int:
         used.add(ch)
         res = max(res, len(used))
     return res
+
 
 def min_subarray_len(target: int, nums: List[int]) -> int:
     """
@@ -67,6 +69,7 @@ def min_subarray_len(target: int, nums: List[int]) -> int:
             l += 1
     return 0 if res == float("inf") else res
 
+
 def longestOnes(nums: List[int], k: int) -> int:
     """
     ### Max Consecutive Ones III
@@ -81,11 +84,42 @@ def longestOnes(nums: List[int], k: int) -> int:
     Bolded numbers were flipped from 0 to 1. The longest subarray is underlined.
     """
     res = l = 0
-    zerocount = 0
+    zero_count = 0
     for r, n in enumerate(nums):
-        zerocount += 0 if n else 1
-        while zerocount > k:
-            zerocount -= 0 if nums[l] else 1
+        zero_count += 0 if n else 1
+        while zero_count > k:
+            zero_count -= 0 if nums[l] else 1
             l += 1
         res = max(res, r - l + 1)
+    return res
+
+
+def countCompleteSubarrays(nums: List[int]) -> int:
+    """
+    ### Count Complete Subarrays in an Array
+
+    You are given an array nums consisting of positive integers.
+    We call a subarray of an array complete if the following condition is satisfied:
+    The number of distinct elements in the subarray is equal to the number of
+    distinct elements in the whole array.
+    Return the number of complete subarrays.
+    A subarray is a contiguous non-empty part of an array.
+
+    **Example 1:**
+    > IInput: nums = [1,3,1,2,2]
+    Output: 4
+    Explanation: The complete subarrays are the following: [1,3,1,2], [1,3,1,2,2],
+    [3,1,2] and [3,1,2,2].
+    """
+    uniq = set(nums)
+    freq = defaultdict(int)
+    l = res = 0
+    for r in range(len(nums)):
+        freq[nums[r]] += 1
+        while len(freq) == len(uniq):
+            res += len(nums) - r
+            freq[nums[l]] -= 1
+            if freq[nums[l]] == 0:
+                freq.pop(nums[l])
+            l += 1
     return res
