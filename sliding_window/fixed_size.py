@@ -1,10 +1,13 @@
 """
-    Sliding window with fixed size is useful when you need to perform operations 
+    Sliding window with a fixed size is useful when you need to perform operations
     on k contiguous elements in a structure (such as an array, string, etc.).
     An advantage of this algorithm is that it allows you to traverse the structure
     only once while maintaining a fixed window size.
     This approach reduces the time complexity to O(n), making it particularly
     effective for large dataset.
+    Sliding window with a fixed size usually does not work with arrays that contain
+    negative numbers. The cumulative sum may increase even when the window expands,
+    which does not guarantee the correctness of the solution.
     
     Some of the most popular problems that can be solved with `Fixed size sliding window`
     include finding maximum (sum, xor, etc.) on k contiguous elements in an array.
